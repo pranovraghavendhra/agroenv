@@ -1,0 +1,58 @@
+{
+  "black_cotton_soil": {
+    "name": "Black Cotton Soil (Vertisol)",
+    "regions": ["Maharashtra", "Madhya Pradesh", "Gujarat"],
+    "texture": "clay",
+    "field_capacity_pct": 42.0,
+    "wilting_point_pct": 22.0,
+    "saturation_pct": 55.0,
+    "infiltration_rate_mm_per_hr": 8.0,
+    "bulk_density_g_per_cm3": 1.25,
+    "organic_carbon_pct": 0.65,
+    "depth_cm": 90,
+    "drainage": "slow",
+    "notes": "Prone to waterlogging; swells when wet, cracks when dry"
+  },
+  "alluvial_soil": {
+    "name": "Alluvial Soil (Indo-Gangetic Plain)",
+    "regions": ["Punjab", "Haryana", "Uttar Pradesh", "Bihar"],
+    "texture": "sandy_loam",
+    "field_capacity_pct": 32.0,
+    "wilting_point_pct": 14.0,
+    "saturation_pct": 45.0,
+    "infiltration_rate_mm_per_hr": 25.0,
+    "bulk_density_g_per_cm3": 1.45,
+    "organic_carbon_pct": 0.55,
+    "depth_cm": 120,
+    "drainage": "good",
+    "notes": "Highly fertile; most productive agricultural soils in India"
+  },
+  "red_laterite_soil": {
+    "name": "Red Laterite Soil",
+    "regions": ["Tamil Nadu", "Karnataka", "Andhra Pradesh"],
+    "texture": "loamy_sand",
+    "field_capacity_pct": 22.0,
+    "wilting_point_pct": 10.0,
+    "saturation_pct": 38.0,
+    "infiltration_rate_mm_per_hr": 35.0,
+    "bulk_density_g_per_cm3": 1.55,
+    "organic_carbon_pct": 0.40,
+    "depth_cm": 60,
+    "drainage": "excessive",
+    "notes": "Low moisture retention; requires frequent irrigation"
+  },
+  "loamy_soil": {
+    "name": "Medium Loamy Soil",
+    "regions": ["General"],
+    "texture": "loam",
+    "field_capacity_pct": 35.0,
+    "wilting_point_pct": 16.0,
+    "saturation_pct": 48.0,
+    "infiltration_rate_mm_per_hr": 18.0,
+    "bulk_density_g_per_cm3": 1.38,
+    "organic_carbon_pct": 0.58,
+    "depth_cm": 80,
+    "drainage": "moderate",
+    "notes": "Balanced texture; most commonly used in simulations"
+  }
+}

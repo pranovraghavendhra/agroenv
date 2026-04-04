@@ -1,0 +1,125 @@
+{
+  "rice_kharif": {
+    "name": "Rice (Kharif)",
+    "variety": "IR-64",
+    "season": "kharif",
+    "sowing_month": 6,
+    "harvest_month": 10,
+    "total_days": 120,
+    "growth_stages": {
+      "transplanting": {"start_day": 0, "end_day": 15, "kc": 1.05},
+      "tillering": {"start_day": 15, "end_day": 45, "kc": 1.10},
+      "panicle_initiation": {"start_day": 45, "end_day": 75, "kc": 1.20},
+      "heading": {"start_day": 75, "end_day": 95, "kc": 1.25},
+      "ripening": {"start_day": 95, "end_day": 120, "kc": 0.95}
+    },
+    "gdd_base_temp_c": 10.0,
+    "gdd_total_required": 1800,
+    "gdd_harvest_window": [1750, 1900],
+    "max_yield_ton_per_ha": 6.5,
+    "water_stress_yield_factor": 0.85,
+    "optimal_soil_moisture_pct": [60, 80],
+    "critical_moisture_min_pct": 45,
+    "waterlog_threshold_pct": 95,
+    "pest_vulnerability": {
+      "brown_planthopper": 0.9,
+      "stem_borer": 0.8,
+      "leaf_blast": 0.7
+    },
+    "market_base_price_inr_per_quintal": 2183,
+    "msp_inr_per_quintal": 2183
+  },
+  "wheat_rabi": {
+    "name": "Wheat (Rabi)",
+    "variety": "HD-2967",
+    "season": "rabi",
+    "sowing_month": 11,
+    "harvest_month": 4,
+    "total_days": 140,
+    "growth_stages": {
+      "germination": {"start_day": 0, "end_day": 10, "kc": 0.40},
+      "tillering": {"start_day": 10, "end_day": 45, "kc": 0.75},
+      "stem_extension": {"start_day": 45, "end_day": 75, "kc": 1.15},
+      "heading": {"start_day": 75, "end_day": 100, "kc": 1.20},
+      "grain_filling": {"start_day": 100, "end_day": 125, "kc": 1.10},
+      "maturity": {"start_day": 125, "end_day": 140, "kc": 0.65}
+    },
+    "gdd_base_temp_c": 0.0,
+    "gdd_total_required": 2200,
+    "gdd_harvest_window": [2100, 2300],
+    "max_yield_ton_per_ha": 5.5,
+    "water_stress_yield_factor": 0.90,
+    "optimal_soil_moisture_pct": [50, 70],
+    "critical_moisture_min_pct": 35,
+    "waterlog_threshold_pct": 85,
+    "pest_vulnerability": {
+      "aphid": 0.7,
+      "yellow_rust": 0.85,
+      "karnal_bunt": 0.6
+    },
+    "market_base_price_inr_per_quintal": 2275,
+    "msp_inr_per_quintal": 2275
+  },
+  "cotton_kharif": {
+    "name": "Cotton (Kharif)",
+    "variety": "Bt-Cotton RCH-2",
+    "season": "kharif",
+    "sowing_month": 5,
+    "harvest_month": 11,
+    "total_days": 180,
+    "growth_stages": {
+      "germination": {"start_day": 0, "end_day": 15, "kc": 0.45},
+      "seedling": {"start_day": 15, "end_day": 40, "kc": 0.75},
+      "squaring": {"start_day": 40, "end_day": 75, "kc": 1.05},
+      "flowering": {"start_day": 75, "end_day": 110, "kc": 1.20},
+      "boll_development": {"start_day": 110, "end_day": 150, "kc": 1.10},
+      "boll_opening": {"start_day": 150, "end_day": 180, "kc": 0.65}
+    },
+    "gdd_base_temp_c": 15.5,
+    "gdd_total_required": 2600,
+    "gdd_harvest_window": [2500, 2700],
+    "max_yield_ton_per_ha": 2.8,
+    "water_stress_yield_factor": 0.80,
+    "optimal_soil_moisture_pct": [55, 75],
+    "critical_moisture_min_pct": 40,
+    "waterlog_threshold_pct": 88,
+    "pest_vulnerability": {
+      "bollworm": 0.85,
+      "whitefly": 0.90,
+      "thrips": 0.70
+    },
+    "market_base_price_inr_per_quintal": 6620,
+    "msp_inr_per_quintal": 6620
+  },
+  "tomato_rabi": {
+    "name": "Tomato (Rabi)",
+    "variety": "Pusa Ruby",
+    "season": "rabi",
+    "sowing_month": 10,
+    "harvest_month": 3,
+    "total_days": 110,
+    "growth_stages": {
+      "transplanting": {"start_day": 0, "end_day": 15, "kc": 0.60},
+      "vegetative": {"start_day": 15, "end_day": 40, "kc": 0.85},
+      "flowering": {"start_day": 40, "end_day": 65, "kc": 1.15},
+      "fruit_set": {"start_day": 65, "end_day": 85, "kc": 1.20},
+      "fruit_development": {"start_day": 85, "end_day": 100, "kc": 1.10},
+      "maturity": {"start_day": 100, "end_day": 110, "kc": 0.90}
+    },
+    "gdd_base_temp_c": 10.0,
+    "gdd_total_required": 1400,
+    "gdd_harvest_window": [1350, 1500],
+    "max_yield_ton_per_ha": 25.0,
+    "water_stress_yield_factor": 0.75,
+    "optimal_soil_moisture_pct": [55, 75],
+    "critical_moisture_min_pct": 40,
+    "waterlog_threshold_pct": 85,
+    "pest_vulnerability": {
+      "fruit_borer": 0.85,
+      "early_blight": 0.80,
+      "leaf_miner": 0.65
+    },
+    "market_base_price_inr_per_quintal": 1500,
+    "msp_inr_per_quintal": null
+  }
+}

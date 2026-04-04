@@ -1,0 +1,12 @@
+# AgroEnv requirements
+# Kept minimal deliberately — fits 2 vCPU / 8GB RAM constraint
+# No heavy ML/simulation dependencies (no MetaDrive, no torch, no cv2)
+
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+pydantic==2.7.1
+python-multipart==0.0.9
+
+# No additional scientific libraries needed:
+# All crop/weather models are pure Python math (FAO-56 equations)
+# This keeps the Docker image under 300MB and startup under 10 seconds

@@ -1,0 +1,42 @@
+{
+  "rice_kharif": {
+    "base_msp_inr_per_quintal": 2183,
+    "market_premium_over_msp_pct": 8.5,
+    "monthly_price_index": [1.00, 0.97, 0.95, 0.96, 0.98, 1.02, 1.05, 1.08, 1.10, 1.06, 1.03, 1.01],
+    "annual_volatility_pct": 12.0,
+    "quality_premium_grade_a_pct": 15.0,
+    "quality_discount_grade_c_pct": 20.0,
+    "moisture_penalty_above_14pct_per_unit": 0.5,
+    "peak_harvest_glut_discount_pct": 8.0
+  },
+  "wheat_rabi": {
+    "base_msp_inr_per_quintal": 2275,
+    "market_premium_over_msp_pct": 6.2,
+    "monthly_price_index": [1.05, 1.08, 1.10, 1.06, 1.00, 0.97, 0.96, 0.95, 0.96, 0.98, 1.00, 1.03],
+    "annual_volatility_pct": 9.5,
+    "quality_premium_grade_a_pct": 12.0,
+    "quality_discount_grade_c_pct": 18.0,
+    "moisture_penalty_above_14pct_per_unit": 0.4,
+    "peak_harvest_glut_discount_pct": 6.0
+  },
+  "cotton_kharif": {
+    "base_msp_inr_per_quintal": 6620,
+    "market_premium_over_msp_pct": 18.5,
+    "monthly_price_index": [1.00, 1.02, 1.05, 1.08, 1.05, 1.02, 0.98, 0.95, 0.94, 0.96, 0.99, 1.00],
+    "annual_volatility_pct": 22.0,
+    "quality_premium_grade_a_pct": 25.0,
+    "quality_discount_grade_c_pct": 30.0,
+    "moisture_penalty_above_14pct_per_unit": 0.8,
+    "peak_harvest_glut_discount_pct": 12.0
+  },
+  "tomato_rabi": {
+    "base_msp_inr_per_quintal": 1500,
+    "market_premium_over_msp_pct": 45.0,
+    "monthly_price_index": [1.20, 1.35, 1.50, 1.40, 1.10, 0.85, 0.75, 0.80, 0.90, 1.00, 1.10, 1.15],
+    "annual_volatility_pct": 65.0,
+    "quality_premium_grade_a_pct": 35.0,
+    "quality_discount_grade_c_pct": 45.0,
+    "moisture_penalty_above_14pct_per_unit": 1.2,
+    "peak_harvest_glut_discount_pct": 25.0
+  }
+}

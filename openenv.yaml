@@ -1,0 +1,108 @@
+name: agroenv
+display_name: "AgroEnv: Precision Agriculture Advisor"
+version: "1.0.0"
+description: >
+  AgroEnv simulates real Indian smallholder farming decisions across three tasks
+  of increasing difficulty. Agents must manage irrigation, pest control, and
+  harvest timing using scientific agronomic models (FAO-56, ICAR IPM, AGMARKNET).
+  All reward functions are grounded in real agronomic science — not arbitrary heuristics.
+
+tags:
+  - agriculture
+  - india
+  - real-world
+  - multi-step
+  - rl
+  - planning
+  - science-grounded
+
+author: "AgroEnv Team"
+license: "MIT"
+
+environment:
+  type: http
+  base_url: "http://localhost:7860"
+  endpoints:
+    reset: "POST /reset"
+    step:  "POST /step"
+    state: "GET /state"
+    grade: "POST /grade"
+
+tasks:
+  - name: irrigation_scheduling
+    difficulty: easy
+    max_steps: 14
+    pass_threshold: 0.65
+    crop: rice_kharif
+    region: maharashtra_pune
+    description: >
+      Manage rice irrigation for 14 days during tillering stage.
+      Agent reads soil moisture, ET₀, and 7-day weather forecasts to
+      decide when and how much to irrigate. Graded on water efficiency,
+      stress avoidance, and method choice.
+
+  - name: pest_management
+    difficulty: medium
+    max_steps: 30
+    pass_threshold: 0.60
+    crop: cotton_kharif
+    region: andhra_guntur
+    description: >
+      Manage cotton pest pressure (whitefly + bollworm) for 30 days.
+      Agent must apply pesticides only at ICAR Economic Thresholds,
+      rotate chemicals to prevent resistance, and preserve natural enemies.
+      Graded on damage control, IPM compliance, and resistance management.
+
+  - name: season_optimizer
+    difficulty: hard
+    max_steps: 110
+    pass_threshold: 0.55
+    crop: tomato_rabi
+    region: andhra_guntur
+    description: >
+      Manage complete 110-day tomato Rabi season in Andhra Pradesh.
+      Agent must simultaneously optimise irrigation, pest/disease management,
+      and harvest timing against volatile market prices. Graded on net revenue,
+      yield achievement, harvest timing, and sustainability.
+
+observation_space:
+  type: json
+  description: >
+    Rich structured observation including: today's weather (FAO-56 ET₀, temperature,
+    humidity, rainfall), 7-day forecast with uncertainty, soil water balance (moisture,
+    depletion, stress coefficient Ks), crop state (GDD, growth stage, NDVI/LAI,
+    yield estimate), pest status (population vs ICAR thresholds, resistance index),
+    market prices (INR/quintal, MSP, 15-day outlook), and resource budget.
+
+action_space:
+  type: json
+  fields:
+    irrigate: "bool — whether to irrigate today"
+    irrigation_amount_mm: "float [0–100] — amount of water to apply"
+    irrigation_method: "enum [drip, sprinkler, flood, furrow, none]"
+    spray_decisions: "list of {pest_name, pesticide} — spray decisions per pest"
+    harvest_now: "bool — harvest the crop today (only valid in harvest window)"
+    reasoning: "string [max 500 chars] — agent explanation (not scored)"
+
+reward:
+  type: dense
+  range: [-1.0, 1.0]
+  description: >
+    Dense per-step reward providing continuous feedback. Positive rewards for
+    correct irrigation decisions, timely pest intervention, and optimal harvest
+    timing. Negative rewards for water stress, unnecessary sprays, pesticide
+    resistance buildup, waterlogging, and premature/late harvest.
+
+science_references:
+  - "Allen et al. (1998) FAO-56 Penman-Monteith ET₀"
+  - "ICAR Integrated Pest Management Guidelines (2022)"
+  - "AGMARKNET Historical Price Data 2023-24"
+  - "CACP MSP Recommendations 2023-24"
+  - "Baret & Guyot (1991) NDVI-LAI Beer-Lambert relationship"
+
+hardware_requirements:
+  min_vcpu: 1
+  min_ram_gb: 1
+  gpu_required: false
+  estimated_startup_seconds: 8
+  estimated_step_ms: 15
