@@ -33,6 +33,9 @@ from .models import (
     StateResponse, ErrorResponse,
 )
 from .config import API_VERSION, ENV_NAME, ENV_DISPLAY_NAME, TASK_DEFAULTS, MAX_STEPS
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+import os
 
 # ─── Logging ────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -101,6 +104,12 @@ def _get_session(request: Request) -> Optional[AgroEnv]:
         _sessions[session_id]["last_active"] = time.time()
         return _sessions[session_id]["env"]
     return None
+
+@app.get("/", response_class=HTMLResponse)
+async def frontend():
+    html_path = os.path.join(os.path.dirname(__file__), "..", "index.html")
+    with open(html_path, "r", encoding="utf-8") as f:
+        return f.read()
 
 
 # ─── Endpoints ───────────────────────────────────────────────────────────────
