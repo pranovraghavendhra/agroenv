@@ -20,7 +20,7 @@ RUN pip install --upgrade pip && \
 
 # Copy server source
 COPY server/ ./server/
-
+COPY index.html ./index.html
 # Copy data files
 COPY server/data/ ./server/data/
 

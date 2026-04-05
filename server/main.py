@@ -107,8 +107,7 @@ def _get_session(request: Request) -> Optional[AgroEnv]:
 
 @app.get("/", response_class=HTMLResponse)
 async def frontend():
-    html_path = os.path.join(os.path.dirname(__file__), "..", "index.html")
-    with open(html_path, "r", encoding="utf-8") as f:
+    with open("/app/index.html", "r", encoding="utf-8") as f:
         return f.read()
 
 
