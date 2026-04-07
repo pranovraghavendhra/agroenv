@@ -30,6 +30,7 @@ Reproducible baseline scores (seed=42):
 """
 
 import os
+import sys
 import json
 import textwrap
 import requests
@@ -71,7 +72,7 @@ def log_step(step: int, action: str, reward: float, done: bool, error: Optional[
     # Truncate action for log readability
     action_short = action[:120].replace("\n", " ") if action else "null"
     print(
-        f"[STEP] step={step} action={action_short!r} "
+        f"[STEP] step={step} action={action_short} "
         f"reward={reward:.2f} done={done_val} error={error_val}",
         flush=True,
     )
@@ -285,10 +286,10 @@ def get_agent_action(
         return action, text
 
     except json.JSONDecodeError as e:
-        print(f"[DEBUG] JSON parse error: {e} | raw: {text[:200]}", flush=True)
+        print(f"[DEBUG] JSON parse error: {e} | raw: {text[:200]}", file=sys.stderr, flush=True)
         return _safe_default_action(obs, task), json.dumps(_safe_default_action(obs, task))
     except Exception as e:
-        print(f"[DEBUG] LLM error: {e}", flush=True)
+        print(f"[DEBUG] LLM error: {e}", file=sys.stderr, flush=True)
         return _safe_default_action(obs, task), json.dumps(_safe_default_action(obs, task))
 
 
@@ -399,9 +400,9 @@ def run_task(client: OpenAI, env_client: AgroEnvClient, task: str) -> dict:
             grade_result = env_client.grade()
             score   = grade_result.get("score", 0.0)
             success = grade_result.get("passed", False)
-            print(f"[DEBUG] Grade breakdown: {json.dumps(grade_result.get('breakdown', {}))}", flush=True)
+            print(f"[DEBUG] Grade breakdown: {json.dumps(grade_result.get('breakdown', {}))}", file=sys.stderr, flush=True)
         except Exception as e:
-            print(f"[DEBUG] Grade failed: {e}", flush=True)
+            print(f"[DEBUG] Grade failed: {e}", file=sys.stderr, flush=True)
             # Fallback: compute score from step rewards
             pass_threshold = PASS_THRESHOLDS[task]
             score = sum(rewards) / max(1, steps_taken) if rewards else 0.0
@@ -409,7 +410,7 @@ def run_task(client: OpenAI, env_client: AgroEnvClient, task: str) -> dict:
             success = score >= pass_threshold
 
     except Exception as e:
-        print(f"[DEBUG] Task {task} failed: {e}", flush=True)
+        print(f"[DEBUG] Task {task} failed: {e}", file=sys.stderr, flush=True)
         success = False
 
     finally:
@@ -433,31 +434,29 @@ def main() -> None:
     client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
     env_client = AgroEnvClient(base_url=AGROENV_URL)
 
-    print(f"[INFO] AgroEnv Baseline Inference", flush=True)
-    print(f"[INFO] Model: {MODEL_NAME} | API: {API_BASE_URL}", flush=True)
-    print(f"[INFO] Environment: {AGROENV_URL} | Seed: {SEED}", flush=True)
-    print(f"[INFO] Tasks: {TASKS}", flush=True)
-    print("", flush=True)
+    print(f"[INFO] AgroEnv Baseline Inference", file=sys.stderr, flush=True)
+    print(f"[INFO] Model: {MODEL_NAME} | API: {API_BASE_URL}", file=sys.stderr, flush=True)
+    print(f"[INFO] Environment: {AGROENV_URL} | Seed: {SEED}", file=sys.stderr, flush=True)
+    print(f"[INFO] Tasks: {TASKS}", file=sys.stderr, flush=True)
 
     all_results = []
     for task in TASKS:
         result = run_task(client, env_client, task)
         all_results.append(result)
-        print("", flush=True)
 
-    # Summary
-    print("=" * 60, flush=True)
-    print("BASELINE RESULTS SUMMARY", flush=True)
-    print("=" * 60, flush=True)
+    # Summary (stderr only — not part of evaluator output)
+    print("=" * 60, file=sys.stderr, flush=True)
+    print("BASELINE RESULTS SUMMARY", file=sys.stderr, flush=True)
+    print("=" * 60, file=sys.stderr, flush=True)
     for r in all_results:
         status = "PASS ✓" if r["success"] else "FAIL ✗"
         print(
             f"  {r['task']:30s} score={r['score']:.3f}  {status}",
-            flush=True,
+            file=sys.stderr, flush=True,
         )
     overall = sum(r["score"] for r in all_results) / len(all_results)
-    print(f"\n  Overall average score: {overall:.3f}", flush=True)
-    print("=" * 60, flush=True)
+    print(f"\n  Overall average score: {overall:.3f}", file=sys.stderr, flush=True)
+    print("=" * 60, file=sys.stderr, flush=True)
 
 
 if __name__ == "__main__":
