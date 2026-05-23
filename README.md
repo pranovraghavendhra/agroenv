@@ -1,6 +1,6 @@
 ---
-title: AgroEnv
-emoji: 🌱
+Title: AgroEnv
+Emoji: 🌱
 colorFrom: green
 colorTo: yellow
 sdk: docker
